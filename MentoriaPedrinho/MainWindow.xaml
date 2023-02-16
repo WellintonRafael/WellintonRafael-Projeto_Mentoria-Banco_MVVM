@@ -1,0 +1,26 @@
+﻿<Window x:Class="MentoriaPedrinho.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MentoriaPedrinho"
+        mc:Ignorable="d"
+        xmlns:viewModel="clr-namespace:MentoriaPedrinho.ViewModels"
+        d:DataContext="{d:DesignInstance viewModel:BancoViewModel}"
+        Title="Banco Apolinário" Height="259" Width="728">
+    <Grid Margin="0,0,10,6">
+        
+        <Label Content="Olá! Bem vindo ao Banco Apolinário!" HorizontalAlignment="Left" Margin="59,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.632,-0.384"/>
+        <Label Content="O que deseja fazer?" HorizontalAlignment="Left" Margin="134,0,0,0" VerticalAlignment="Center" Width="130"/>
+        <Button Content="Sacar" Margin="134,164,484,0" VerticalAlignment="Top" Click="Sacar_OnClick" RenderTransformOrigin="0.313,-1.298"/>
+        <Button Content="Depositar" HorizontalAlignment="Left" Margin="265,164,0,0" VerticalAlignment="Top" Width="100" Click="Depositar_OnClick"/>
+        <Button Content="Sair" HorizontalAlignment="Left" Margin="390,164,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.505,0.052" Width="100" Click="Sair_OnClick"/>
+        <Label Content="Seu saldo atual é:" HorizontalAlignment="Left" Margin="134,58,0,0" VerticalAlignment="Top" Width="106"/>
+        <Label Content="{Binding TxtExibeSaldo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="245,58,0,0" VerticalAlignment="Top" Width="245"/>
+        <!--<TextBox HorizontalAlignment="Left" Margin="336,58,0,0" TextWrapping="Wrap" Text="{Binding TxtExibeSaldo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" VerticalAlignment="Top" Width="154" />-->
+
+
+        <!--<Label Content="{Binding TxtExibeSaldo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="336,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.632,-0.384"/>-->
+
+    </Grid>
+</Window>
