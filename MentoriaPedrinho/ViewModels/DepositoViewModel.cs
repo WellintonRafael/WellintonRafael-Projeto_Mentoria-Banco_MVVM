@@ -16,13 +16,10 @@ namespace MentoriaPedrinho.ViewModels
             LabelInicial = CarregaDadosNaTela("Depósito");
         }
 
-
-
         public void Depositar()
         {
-            _operacaoService.DepositarService(ValorDaOperacao.ToDouble());
+            _operacaoService.Depositar(ValorDaOperacao.ToDouble());
             MessageBox.Show($"Depósito de R$ {ValorDaOperacao} efetuado com sucesso!");
         }
-
     }
 }

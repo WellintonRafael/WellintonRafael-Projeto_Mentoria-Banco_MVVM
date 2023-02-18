@@ -6,20 +6,15 @@ namespace MentoriaPedrinho
 {
     public partial class MainWindow : Window
     {
-        private OperacaoService _operacaoService { get; set; }
         private BancoViewModel _bancoViewModel { get; set; }
         private DepositoViewModel _depositoViewModel { get; set; } = new();
         private SaqueViewModel _saqueViewModel { get; set; } = new();
-
-
 
         public MainWindow()
         {
             _bancoViewModel = new();
             DataContext = _bancoViewModel;
             InitializeComponent();
-
-            _operacaoService = new();
 
             _bancoViewModel.MostraSaldo();
         }
@@ -34,7 +29,6 @@ namespace MentoriaPedrinho
         private void Depositar_OnClick(object sender, RoutedEventArgs e)
         {
             _depositoViewModel.AbreTela(new TelaDeDeposito());
-
         }
 
         private void Sair_OnClick(object sender, RoutedEventArgs e)

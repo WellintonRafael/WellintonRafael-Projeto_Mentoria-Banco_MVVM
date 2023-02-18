@@ -14,7 +14,7 @@ namespace MentoriaPedrinho.ViewModels
         {
             _operacaoService = new OperacaoService();
 
-            TxtExibeSaldo = _operacaoService.GetSaldoService().ToString();
+            TxtExibeSaldo = _operacaoService.GetSaldo().ToString();
         }
 
 
@@ -22,7 +22,7 @@ namespace MentoriaPedrinho.ViewModels
 
         public string MostraSaldo()
         {
-            TxtExibeSaldo = _operacaoService.GetSaldoService().ToString();
+            TxtExibeSaldo = _operacaoService.GetSaldo().ToString();
             return TxtExibeSaldo;
         }
     }

@@ -8,19 +8,10 @@ namespace MentoriaPedrinho.ViewModels
     internal abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
+        public void OnPropertyChanged([CallerMemberName] string name = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));        
+        protected string CarregaDadosNaTela(string titulo) => $"Seja bem vindo à tela de {titulo}";
 
-        protected string CarregaDadosNaTela(string titulo)
-        {
-            var tituloTeste = $"Seja bem vindo à tela de {titulo}";
-
-            return tituloTeste;
-        }
-
-        private string _labelInicial { get; set; }
+        private string _labelInicial;
         public string LabelInicial
         {
             get => _labelInicial;
@@ -31,8 +22,7 @@ namespace MentoriaPedrinho.ViewModels
             }
         }
 
-
-        private string _valorDaOperacao { get; set; }
+        private string _valorDaOperacao;
         public string ValorDaOperacao
         {
             get => _valorDaOperacao;
@@ -43,8 +33,7 @@ namespace MentoriaPedrinho.ViewModels
             }
         }
 
-
-        private string _txtExibeSaldo { get; set; }
+        private string _txtExibeSaldo;
         public string TxtExibeSaldo
         {
             get => _txtExibeSaldo;
@@ -55,15 +44,11 @@ namespace MentoriaPedrinho.ViewModels
             }
         }
 
-
-
         public virtual void AbreTela(Window tela)
         {
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
-            window.Close();
-
+            window?.Close();
             tela.Show();
-
         }
     }
 }

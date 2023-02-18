@@ -4,20 +4,20 @@ namespace MentoriaPedrinho.Services
 {
     internal class OperacaoService
     {
-        public string SacarService(double valor)
+        public string Sacar(double valor)
         {
-            string teste = BancoRepository.SacarRepository(valor).ToString();
+            string teste = BancoRepository.Sacar(valor).ToString();
             return teste;
         }
 
-        public void DepositarService(double valorDodoposito)
+        public void Depositar(double valorDodoposito)
         {
-            BancoRepository.DepositarRepository(valorDodoposito);
+            BancoRepository.Depositar(valorDodoposito);
         }
 
-        public double GetSaldoService()
+        public double GetSaldo()
         {
-            var saldo = BancoRepository.GetSaldoRepository();
+            var saldo = BancoRepository.GetSaldo();
             return saldo;
         }
     }

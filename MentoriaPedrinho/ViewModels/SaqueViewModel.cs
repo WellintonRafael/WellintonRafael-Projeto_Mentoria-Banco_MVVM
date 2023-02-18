@@ -15,24 +15,22 @@ namespace MentoriaPedrinho.ViewModels
             LabelInicial = CarregaDadosNaTela("Saque");
         }
 
-
-
         public void Sacar()
         {
-            var saldo = _operacaoService.GetSaldoService();
+            var saldo = _operacaoService.GetSaldo();
 
             if (saldo < ParseHelper.ToDouble(ValorDaOperacao))
             {
                 MessageBox.Show("Saldo insuficiente!", "Atenção", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else
-            {
-                _operacaoService.SacarService(ParseHelper.ToDouble(ValorDaOperacao));
 
-                MessageBox.Show($"Saque de R$ {ValorDaOperacao},00 efetuado com sucesso!", "Operação realizada");
-
-                _operacaoService.GetSaldoService();
+                return;
             }
+
+            _operacaoService.Sacar(ParseHelper.ToDouble(ValorDaOperacao));
+
+            MessageBox.Show($"Saque de R$ {ValorDaOperacao},00 efetuado com sucesso!", "Operação realizada");
+
+            _operacaoService.GetSaldo();
         }
     }
 }

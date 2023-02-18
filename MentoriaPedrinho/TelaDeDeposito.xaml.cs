@@ -14,22 +14,16 @@ namespace MentoriaPedrinho
         }
 
         private DepositoViewModel _depositoViewModel { get; set; }
-
-        private BancoViewModel _bancoViewModel { get; set; } = new();
-
-
         private void Depositar_OnClick(object sender, RoutedEventArgs e)
         {
             _depositoViewModel.Depositar();
 
-            _bancoViewModel.AbreTela(new MainWindow());
-
+            _depositoViewModel.AbreTela(new MainWindow());
         }
 
         protected void Cancelar_OnClick(object sender, RoutedEventArgs e)
         {
-            _bancoViewModel.AbreTela(new MainWindow());
-
+            _depositoViewModel.AbreTela(new MainWindow());
         }
     }
 }

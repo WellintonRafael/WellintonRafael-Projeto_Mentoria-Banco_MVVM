@@ -10,18 +10,17 @@ namespace MentoriaPedrinho.Repository
     {
         private static double _saldo { get; set; }
 
-        public static double SacarRepository(double valor)
+        public static double Sacar(double valor)
         {
             _saldo -= valor;
             return _saldo;
         }
-
-        public static void DepositarRepository(double valorDoDeposito)
+        public static void Depositar(double valorDoDeposito)
         {
             _saldo += valorDoDeposito;
         }
 
-        public static double GetSaldoRepository()
+        public static double GetSaldo()
         {
             return _saldo;
         }
