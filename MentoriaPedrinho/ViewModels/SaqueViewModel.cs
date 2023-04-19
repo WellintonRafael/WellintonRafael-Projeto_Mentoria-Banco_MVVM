@@ -31,7 +31,7 @@ namespace MentoriaPedrinho.ViewModels
                     throw new ArgumentNullException("Digite o valor a ser sacado! Não sabe ler!", valorDoSaque);
 
                 if (saldo < valorDoSaqueParseado)                
-                    throw new SaldoInsuficienteExeption("Saldo insuficiente! Seu pobre!", saldo.ToString());
+                    throw new SaldoInsuficienteException("Saldo insuficiente! Seu pobre!", saldo.ToString());
                 
                 if (MessageBox.Show($"Tem certeza que deseja sacar R$ {ValorDaOperacao}?", "Atenção", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No) return;
 
@@ -44,7 +44,7 @@ namespace MentoriaPedrinho.ViewModels
                 AbreTela(new MainWindow());
             }
 
-            catch (SaldoInsuficienteExeption ex)
+            catch (SaldoInsuficienteException ex)
             {
                 MessageBox.Show($"{ex.Message} \nSeu saldo é R$ {ex.Saldo}", "Atenção", MessageBoxButton.OK, MessageBoxImage.Error);
 
