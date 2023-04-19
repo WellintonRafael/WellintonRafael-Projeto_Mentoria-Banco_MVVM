@@ -8,7 +8,9 @@ namespace MentoriaPedrinho.Repository
 {
     public static class BancoRepository
     {
-        private static double _saldo { get; set; }
+        private static double _saldo;
+
+        public static double Saldo { get => _saldo; }  
 
         public static double Sacar(double valor)
         {
@@ -20,10 +22,12 @@ namespace MentoriaPedrinho.Repository
             _saldo += valorDoDeposito;
         }
 
-        public static double GetSaldo()
-        {
-            return _saldo;
-        }
+
+
+        //public static double GetSaldo()
+        //{
+        //    return _saldo;
+        //}
         
         public static void SetSaldo(double valor)
         {

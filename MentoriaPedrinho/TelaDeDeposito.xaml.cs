@@ -13,7 +13,7 @@ namespace MentoriaPedrinho
             InitializeComponent();
         }
 
-        private DepositoViewModel _depositoViewModel { get; set; }
+        private DepositoViewModel _depositoViewModel { get; }
         private void Depositar_OnClick(object sender, RoutedEventArgs e)
         {
             _depositoViewModel.Depositar();

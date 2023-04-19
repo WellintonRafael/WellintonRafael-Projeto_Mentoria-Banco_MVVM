@@ -6,9 +6,9 @@ namespace MentoriaPedrinho
 {
     public partial class MainWindow : Window
     {
-        private BancoViewModel _bancoViewModel { get; set; }
-        private DepositoViewModel _depositoViewModel { get; set; } = new();
-        private SaqueViewModel _saqueViewModel { get; set; } = new();
+        private BancoViewModel _bancoViewModel { get; }
+        private DepositoViewModel _depositoViewModel { get; } = new();
+        private SaqueViewModel _saqueViewModel { get; } = new();
 
         public MainWindow()
         {
@@ -22,9 +22,7 @@ namespace MentoriaPedrinho
         private void Sacar_OnClick(object sender, RoutedEventArgs e)
         {
             _saqueViewModel.AbreTela(new TelaDeSaque());
-            this.Close();
         }
-
 
         private void Depositar_OnClick(object sender, RoutedEventArgs e)
         {
@@ -33,13 +31,8 @@ namespace MentoriaPedrinho
 
         private void Sair_OnClick(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Deseja mesmo encerrar o sistema?",
-                    "Encerrar sessão",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
+            if (MessageBox.Show("Deseja mesmo encerrar o sistema?", "Encerrar sessão", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No) return;
                 this.Close();
-            }
         }
     }
 }

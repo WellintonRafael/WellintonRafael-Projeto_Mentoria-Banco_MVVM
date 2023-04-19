@@ -1,6 +1,9 @@
-﻿using MentoriaPedrinho.Helpers;
+﻿using MentoriaPedrinho.Exeptions;
+using MentoriaPedrinho.Helpers;
 using MentoriaPedrinho.Services;
+using System;
 using System.Windows;
+using System.Windows.Documents;
 
 namespace MentoriaPedrinho.ViewModels
 {
@@ -15,22 +18,52 @@ namespace MentoriaPedrinho.ViewModels
             LabelInicial = CarregaDadosNaTela("Saque");
         }
 
-        public void Sacar()
+        public void Sacar(string valorDoSaque)
         {
-            var saldo = _operacaoService.GetSaldo();
-
-            if (saldo < ParseHelper.ToDouble(ValorDaOperacao))
+            try
             {
-                MessageBox.Show("Saldo insuficiente!", "Atenção", MessageBoxButton.OK, MessageBoxImage.Error);
+                var saldo = _operacaoService.GetSaldo();
 
-                return;
+                if (!double.TryParse(valorDoSaque, out double valorDoSaqueParseado))
+                    throw new ArgumentOutOfRangeException("Você precisa digitar um valor válido! Sua mula!", valorDoSaque);
+
+                if (valorDoSaque == null)                
+                    throw new ArgumentNullException("Digite o valor a ser sacado! Não sabe ler!", valorDoSaque);
+
+                if (saldo < valorDoSaqueParseado)                
+                    throw new SaldoInsuficienteExeption("Saldo insuficiente! Seu pobre!", saldo.ToString());
+                
+                if (MessageBox.Show($"Tem certeza que deseja sacar R$ {ValorDaOperacao}?", "Atenção", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No) return;
+
+                _operacaoService.Sacar(valorDoSaqueParseado);
+
+                MessageBox.Show($"Saque de R$ {ValorDaOperacao},00 efetuado com sucesso!", "Operação realizada");
+
+                _operacaoService.GetSaldo();
+
+                AbreTela(new MainWindow());
             }
 
-            _operacaoService.Sacar(ParseHelper.ToDouble(ValorDaOperacao));
+            catch (SaldoInsuficienteExeption ex)
+            {
+                MessageBox.Show($"{ex.Message} \nSeu saldo é R$ {ex.Saldo}", "Atenção", MessageBoxButton.OK, MessageBoxImage.Error);
 
-            MessageBox.Show($"Saque de R$ {ValorDaOperacao},00 efetuado com sucesso!", "Operação realizada");
+                AbreTela(new TelaDeSaque());
+            }
 
-            _operacaoService.GetSaldo();
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(ex.ParamName, "Atenção", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                AbreTela(new TelaDeSaque());
+            }
+
+            catch (ArgumentOutOfRangeException ex)
+            {
+                MessageBox.Show(ex.ParamName, "Atenção", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                AbreTela(new TelaDeSaque());
+            }
         }
     }
 }

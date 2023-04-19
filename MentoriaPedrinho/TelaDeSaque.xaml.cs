@@ -5,7 +5,7 @@ namespace MentoriaPedrinho
 {
     public partial class TelaDeSaque : Window
     {
-        private SaqueViewModel _saqueViewModel { get; set; }
+        private SaqueViewModel _saqueViewModel { get; }
         public TelaDeSaque()
         {
             _saqueViewModel = new();
@@ -14,12 +14,8 @@ namespace MentoriaPedrinho
         }
 
         private void Sacar_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show($"Tem certeza que deseja sacar R$ {_saqueViewModel.ValorDaOperacao}?", "Atenção", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No) return;
-
-            _saqueViewModel.Sacar();
-
-            _saqueViewModel.AbreTela(new MainWindow());
+        {            
+            _saqueViewModel.Sacar(_saqueViewModel.ValorDaOperacao);
         }
 
         private void Cancelar_OnClick(object sender, RoutedEventArgs e)

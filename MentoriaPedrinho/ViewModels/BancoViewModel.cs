@@ -7,18 +7,12 @@ namespace MentoriaPedrinho.ViewModels
     {
         private readonly OperacaoService _operacaoService;
 
-        private MainWindow _mainWindow { get; set; }
-
-
         public BancoViewModel()
         {
             _operacaoService = new OperacaoService();
 
             TxtExibeSaldo = _operacaoService.GetSaldo().ToString();
         }
-
-
-
 
         public string MostraSaldo()
         {
